@@ -2,6 +2,7 @@
 
 use App\Post;
 use App\Category;
+use App\Tag; //agregado video 7
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -18,7 +19,7 @@ class PostsTableSeeder extends Seeder
     {
         Post::truncate();
         Category::truncate();
-        
+        Tag::truncate(); //agregado video 7
 
         $category = new Category;
         $category->name = "Categoria 1";
@@ -45,7 +46,7 @@ class PostsTableSeeder extends Seeder
         $post->category_id = 4;
         $post->save();
 
-        
+        $post->tags()->attach(Tag::create(['name' => 'Etiqueta 4']));//agregado video 7
 
 		$post = new Post;
         $post->title = "Mi segundo post";
@@ -56,7 +57,8 @@ class PostsTableSeeder extends Seeder
         $post->category_id = 3;
         $post->save();
 
-        
+        $post->tags()->attach(Tag::create(['name' => 'Etiqueta 3']));//agregado video 7
+
         $post = new Post;
         $post->title = "Mi tercer post";
         //$post->url = str_slug("Mi tercer post");
@@ -66,6 +68,7 @@ class PostsTableSeeder extends Seeder
         $post->category_id = 2;
         $post->save();
 
+        $post->tags()->attach(Tag::create(['name' => 'Etiqueta 2']));//agregado video 7
         
         $post = new Post;
         $post->title = "Mi cuarto post";
@@ -76,6 +79,7 @@ class PostsTableSeeder extends Seeder
         $post->category_id = 1;
         $post->save(); 
 
+        $post->tags()->attach(Tag::create(['name' => 'Etiqueta 1']));//agregado video 7
         
     }
 }
