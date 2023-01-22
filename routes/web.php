@@ -35,4 +35,10 @@ Route::get('posts', function(){
 }); 
 //*fin video 3*
 
+/**video 8 */
+Route::get('admin', function(){
+    return view('admin.dashboard');
+});
+/**fin video 8 */
+
 
