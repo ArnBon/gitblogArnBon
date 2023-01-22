@@ -34,3 +34,5 @@ Route::get('posts', function(){
     return App\Post::all();
 }); 
 //*fin video 3*
+
+
