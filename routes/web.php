@@ -36,9 +36,9 @@ Route::get('posts', function(){
 //*fin video 3*
 
 /**video 8 */
-Route::get('admin', function(){
-    return view('admin.dashboard');
-});
+// Route::get('admin', function(){
+//     return view('admin.dashboard');
+// });
 /**fin video 8 */
 
 /*video 9*/
@@ -59,4 +59,10 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 /**fin video 9 */
 
+/** Video 10 se cambia admin por home y se agrega un middleware referencia video 8*/
+Route::get('home', function(){
+    return view('admin.dashboard');
+})->middleware('auth');
+
+/**fin video 10 */
 
