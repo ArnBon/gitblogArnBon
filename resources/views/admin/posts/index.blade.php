@@ -36,7 +36,8 @@
                            <td>{{ $post->excerpt }}</td>
                            <td>
                                 <a href="#"class="btn btn-xs btn-default" target="_blank"><i class = "fa fa-eye" ></i></a>
-                                <a href="#" class="btn btn-xs btn-info" target="_blank"><i class = "fa fa-pencil"></i></a>
+                                <a href="#" class="btn btn-xs btn-info" target="_blank"><i class = "fa fa-pencil"></i></a>                                
+                                <a href="#" class="btn btn-xs btn-danger"><i class = "fa fa-trash"></i></a>
                                 
                             </td>
                     </tr>

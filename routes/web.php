@@ -69,8 +69,9 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 /*video 11*/
 Route::get('/', 'PagesController@home');
-Route::get('home', 'HomeController@index');
+// Route::get('home', 'HomeController@index'); comentado en el video 13
 // Route::get('admin/posts', 'Admin\PostsController@index');
+Route::get('admin', 'HomeController@index'); //colocado y luego comentado en video 13 porque se movio al grupo de rutas
 /**despues vino la creacion de los grupos de rutas */
 // Route::group([
 // 'prefix'     => 'admin',
@@ -87,7 +88,8 @@ Route::group([
     'namespace'  => 'Admin',
     'middleware' => 'auth'],
     function(){
-        Route::get('posts', 'PostsController@index')->name('admin.posts.index');
+        Route::get('/', 'AdminController@index')->name('dashboard');
+        Route::get('posts', 'PostsController@index')->name('admin.posts.index');        
     });
 /**fin video 12 */
 
