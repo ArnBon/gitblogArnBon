@@ -72,12 +72,22 @@ Route::get('/', 'PagesController@home');
 Route::get('home', 'HomeController@index');
 // Route::get('admin/posts', 'Admin\PostsController@index');
 /**despues vino la creacion de los grupos de rutas */
-Route::group([
-'prefix'     => 'admin',
-'namespace'  => 'Admin',
-'middleware' => 'auth'],
-function(){
-    Route::get('posts', 'PostsController@index');
-});
+// Route::group([
+// 'prefix'     => 'admin',
+// 'namespace'  => 'Admin',
+// 'middleware' => 'auth'],
+// function(){
+//     Route::get('posts', 'PostsController@index');
+// });
 /**fin video 11 */
+
+/**video 12  le agregamos un nombre a la ruta*/
+Route::group([
+    'prefix'     => 'admin',
+    'namespace'  => 'Admin',
+    'middleware' => 'auth'],
+    function(){
+        Route::get('posts', 'PostsController@index')->name('admin.posts.index');
+    });
+/**fin video 12 */
 
