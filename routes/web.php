@@ -25,10 +25,12 @@
 //     return view('welcome', compact('posts'));
 // }); // este fue modificado por el de abajop
 
-Route::get('/', function(){
-    $posts = App\Post::latest('published_at')->get();
-    return view('welcome', compact('posts'));
-});
+/**comentado en el video 11 */
+// Route::get('/', function(){
+//     $posts = App\Post::latest('published_at')->get();
+//     return view('welcome', compact('posts'));
+// });
+/**fin comentado en el video 11 */
 
 Route::get('posts', function(){
     return App\Post::all();
@@ -60,9 +62,22 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 /**fin video 9 */
 
 /** Video 10 se cambia admin por home y se agrega un middleware referencia video 8*/
-Route::get('home', function(){
-    return view('admin.dashboard');
-})->middleware('auth');
-
+// Route::get('home', function(){
+//     return view('admin.dashboard');
+// })->middleware('auth');
 /**fin video 10 */
+
+/*video 11*/
+Route::get('/', 'PagesController@home');
+Route::get('home', 'HomeController@index');
+// Route::get('admin/posts', 'Admin\PostsController@index');
+/**despues vino la creacion de los grupos de rutas */
+Route::group([
+'prefix'     => 'admin',
+'namespace'  => 'Admin',
+'middleware' => 'auth'],
+function(){
+    Route::get('posts', 'PostsController@index');
+});
+/**fin video 11 */
 
