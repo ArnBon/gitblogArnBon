@@ -58,6 +58,33 @@
           <!-- /.box -->
 @stop
 
+@push('styles')
+<!-- DataTables css-->
+  <link rel="stylesheet" href="/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+@endpush
+
+@push('scripts')
+<!-- DataTables js-->
+<script src="/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- Datatables -->
+   <script>
+        $(function () {    
+    $('#posts-table').DataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+   </script> 
+
+
+
+@endpush
+
 
 
 

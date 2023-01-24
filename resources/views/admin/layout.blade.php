@@ -15,8 +15,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="/adminlte/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="/adminlte/bower_components/Ionicons/css/ionicons.min.css">
-  <!-- DataTables css-->
-  <link rel="stylesheet" href="/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  
+  @stack('styles')<!--no sobreescribe los archivos los coloca uno debajo del otro -->
+  
   <!-- Theme style -->
   <link rel="stylesheet" href="/adminlte/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -379,27 +380,13 @@ desired effect
 <script src="/adminlte/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables js-->
-<script src="/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- Datatables -->
+
+@stack('scripts')<!-- video 15 -->
 <!-- AdminLTE App -->
 <script src="/adminlte/dist/js/adminlte.min.js"></script>
 
 
-<!-- Datatables -->
-   <script>
-  $(function () {    
-    $('#posts-table').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script> 
+
 
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
