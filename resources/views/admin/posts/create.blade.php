@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group">
                         <label>Contenido publicación</label>
-                        <textarea rows="10" name="body" class="form-control" placeholder="Ingresa un extracto de la publicación"></textarea>
+                        <textarea rows="10" name="body" id="editor" class="form-control" placeholder="Ingresa un extracto de la publicación"></textarea>
                     </div>
                 </div>
             </div>
@@ -55,13 +55,22 @@
                         {!! $errors->first('category', '<span class="help-block">:message</span>') !!}
                     </div>
                     <div class="form-group">
+                        <label>Etiquetas</label>
+                        <select name="tags[]" class="form-control select2"
+                                multiple="multiple"
+                                data-placeholder="Selecciona una o mas etiquetas"
+                                style="width: 100%;">
+                            @foreach($tags as $tag)
+                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label>Extracto publicación</label>
                         <textarea name="excerpt" class="form-control" placeholder="Ingresa un extracto de la publicación"></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block">Guardar publicación
-
-                        </button>
+                        <button type="submit" class="btn btn-primary btn-block">Guardar publicación</button>
                     </div>
                 </div>
             </div>
@@ -73,9 +82,16 @@
 @push('styles')
 <!-- bootstrap datepicker css-->
 <link rel="stylesheet" href="/adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+<!-- Select2 -->
+<link rel="stylesheet" href="/adminlte/bower_components/select2/dist/css/select2.min.css">
 @endpush
 
 @push('scripts')
+<!-- CK Editor -->
+<script src="/adminlte/bower_components/ckeditor/ckeditor.js"></script>
+<!--descargue la version 4.6.2 y la renombre la version vieja como ckeditorold -->
+<!-- Select2 -->
+<script src="/adminlte/bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- bootstrap datepicker js-->
 <script src="/adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 
@@ -84,6 +100,11 @@
     $('#datepicker').datepicker({
         autoclose: true
     });
+
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    CKEDITOR.replace('editor');
 
 </script>
 
