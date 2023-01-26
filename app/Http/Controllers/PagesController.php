@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 class PagesController extends Controller
 {
     public function home()
-    {
-        // $posts = \App\Post::latest('published_at')->get(); // sin importar use App\Post 
-        $posts = $post = Post::latest('published_at')->get(); // importando use App\Post
+    {                 
+        $posts = Post::published()->get(); 
         return view('welcome', compact('posts'));
     }
 }
