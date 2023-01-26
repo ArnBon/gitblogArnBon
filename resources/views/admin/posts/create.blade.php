@@ -14,13 +14,14 @@
 
 @section('content')
 <div class="row">
-    <form>
+    <form method="POST" action="{{ route('admin.posts.store')}}">
+    {{csrf_field()}}
         <div class="col-md-8">
             <div class="box box-primary">
                 <div class="box-body">
                     <div class="form-group">
                         <label>Título de la publicación</label>
-                        <input name="txttitle" class="form-control" placeholder="Ingresa aqui el titulo de la publicación">
+                        <input name="title" class="form-control" placeholder="Ingresa aqui el titulo de la publicación">
                     </div>
                     <div class="form-group">
                         <label>Contenido publicación</label>

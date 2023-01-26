@@ -279,7 +279,15 @@ desired effect
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
+
+    {{-- video 17 configuracion para mensaje despues de guardado --}}
+    @if(session()->has('flash'))
+      <div class="alert alert-success">{{session('flash')}}</div>
+    @endif
+    {{-- fin configuración --}}
+
     @yield('content')
+    
     </section>
     <!-- /.content -->
   </div>

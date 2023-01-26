@@ -91,6 +91,7 @@ Route::group([
         Route::get('/', 'AdminController@index')->name('dashboard');
         Route::get('posts', 'PostsController@index')->name('admin.posts.index');         
         Route::get('posts/create','PostsController@create')->name('admin.posts.create');/**Video 14 */
+        Route::post('posts', 'PostsController@store')->name('admin.posts.store'); //video 17
              
     });
 /**fin video 12 */
