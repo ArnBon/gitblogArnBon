@@ -7,9 +7,13 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::find($id);
+        //video 20 queryScope
+        // $post = Post::find($id);
+        // return view('posts.show', compact('post'));
+
+        //video 21 model bindings        
         return view('posts.show', compact('post'));
     }
 }

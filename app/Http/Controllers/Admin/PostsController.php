@@ -40,6 +40,7 @@ class PostsController extends Controller
         $post = new Post;
 
         $post->title        = $request->get('title');
+        $post->url          = str_slug($request->get('title'));
         $post->body         = $request->get('body');
         $post->excerpt      = $request->get('excerpt');
         // $post->published_at = Carbon::parse($request->get('published_at')); esto es en el video 16
