@@ -24,41 +24,40 @@ class PostsController extends Controller
         return view('admin.posts.create', compact('categories', 'tags'));
     }
 
-    public function store(Request $request) /**video 17 */
+    // public function store(Request $request) 
+    // {     
+    //     $this->validate($request, [
+    //     'title'    =>'required',
+    //     'body'     =>'required',
+    //     'category' =>'required',
+    //     'tags'     =>'required',
+    //     'excerpt'  => 'required'
+    //     ]); 
+    //     $post = new Post;
+    //     $post->title        = $request->get('title');
+    //     $post->url          = str_slug($request->get('title'));
+    //     $post->body         = $request->get('body');
+    //     $post->excerpt      = $request->get('excerpt');
+    //     $post->published_at = $request->filled('published_at') ? Carbon:: parse($request->get('published_at')) : null; 
+    //     $post->category_id  = $request->get('category');
+    //     $post->save();
+    //     $post->tags()->attach($request->get('tags'));
+    //     return back()->with('flash', 'Tu publicación ha sido creada!');
+    // }
+
+    public function store(Request $request)
     {
-        /***Aqui va la validacion de los campos video 18**/
-            $this->validate($request, [
-            'title'    =>'required',
-            'body'     =>'required',
-            'category' =>'required',
-            'tags'     =>'required',
-            'excerpt'  => 'required'
-            ]);
-        /**fin validacion */
+        $this->validate($request, ['title' => 'required']); //validamos
 
+        $post = Post::create([                              //guardamos
+            'title' => $request->get('title'),
+            'url'   => str_slug($request->get('title')),
+        ]);
+        return redirect()->route('admin.posts.edit', $post); //redireccionamos
+    }
 
-        $post = new Post;
-
-        $post->title        = $request->get('title');
-        $post->url          = str_slug($request->get('title'));
-        $post->body         = $request->get('body');
-        $post->excerpt      = $request->get('excerpt');
-        // $post->published_at = Carbon::parse($request->get('published_at')); esto es en el video 16
-        // $post->published_at = $request->has('published_at') ? Carbon::parse($request->get('published_at')) : null;
-        $post->published_at = $request->filled('published_at') ? Carbon:: parse($request->get('published_at')) : null; 
-        // esto es en el video 17 metodo has no sirve el metodo correcto es filled
-        /** con el metodo has sigue creando la fecha no la deja en null ESE ES EL ERROR QUE DA OJO CON ESTO */
-        $post->category_id  = $request->get('category');
-        $post->save();
-
-          /* luego de guardar el post 
-        vamos a asignarle las etiquetas 
-        La relacion ya la tenemos definida */
-
-        $post->tags()->attach($request->get('tags'));
-
-        /*pasamos el mensaje de que la operacion fue satisfactoria*/
-
-        return back()->with('flash', 'Tu publicación ha sido creada!');
+    public function edit(Post $post)
+    {
+        return view('admin.posts.edit', compact('post'));  //aqui muestra la vista de edit
     }
 }
