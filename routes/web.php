@@ -31,7 +31,8 @@ Route::group([
         Route::get('posts/create','PostsController@create')->name('admin.posts.create');
         Route::post('posts', 'PostsController@store')->name('admin.posts.store');
         Route::get('posts/{post}', 'PostsController@edit')->name('admin.posts.edit');
-        Route::put('posts/{post}', 'PostsController@update')->name('admin.posts.update'); 
+        Route::put('posts/{post}', 'PostsController@update')->name('admin.posts.update');
+        Route::post('posts/{post}/photos', 'PhotosController@store')->name('admin.posts.photos.store'); //video 26 
     });
 
 

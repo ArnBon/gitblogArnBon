@@ -77,6 +77,13 @@
                         <textarea name="excerpt" class="form-control" placeholder="Ingresa un extracto de la publicación">{{ old('excerpt', $post->excerpt) }}</textarea>
                         {!! $errors->first('excerpt', '<span class="help-block">:message</span>') !!}
                     </div>
+
+                    <!--video 26 imagen con dropzone-->
+                    <div class="form-group">
+                        <div class="dropzone"></div>                    
+                    </div>
+                    <!--fin -->
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block">Guardar publicación</button>
                     </div>
@@ -88,6 +95,8 @@
 @stop
 
 @push('styles')
+<!--DropZone css-->
+<link rel="stylesheet" href="\adminlte\bower_components\dropzone\css\dropzone.css">
 <!-- bootstrap datepicker css-->
 <link rel="stylesheet" href="/adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 <!-- Select2 -->
@@ -95,6 +104,8 @@
 @endpush
 
 @push('scripts')
+<!-- DropZone -->
+<script src="\adminlte\bower_components\dropzone\js\dropzone.min.js"></script>
 <!-- CK Editor -->
 <script src="/adminlte/bower_components/ckeditor/ckeditor.js"></script>
 <!--descargue la version 4.6.2 y la renombre la version vieja como ckeditorold -->
@@ -113,6 +124,16 @@
     $('.select2').select2()
 
     CKEDITOR.replace('editor');
+
+      new Dropzone('.dropzone',{       
+        url:'/admin/posts/{{ $post->url }}/photos',  
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        dictDefaultMessage: 'Arrastra las fotos aqui para subirlas'
+    });   
+    
+    Dropzone.autoDiscover = false; //para que no se autoinicialize
 
 </script>
 
