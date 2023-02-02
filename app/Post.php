@@ -27,6 +27,11 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
     //video 19 con query scopes cambiamos la consulta para que nos traiga las fechas no nulas
     public function scopePublished($query)
     {

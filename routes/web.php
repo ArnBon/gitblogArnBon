@@ -17,7 +17,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 /*Rutas publicas*/
 Route::get('/', 'PagesController@home');
-Route::get('blog/{post}', 'PostsController@show');
+Route::get('blog/{post}', 'PostsController@show')->name('posts.show');
 Route::get('admin', 'HomeController@index'); 
 
 /*Rutas para la administración*/
