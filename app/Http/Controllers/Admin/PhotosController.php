@@ -22,4 +22,12 @@ class PhotosController extends Controller
             'post_id' => $post->id
         ]);
     }
+
+    public function destroy(Photo $photo)
+    {
+        $photo->delete();
+        return back()->with('flash', 'Foto eliminada !' );
+    }
+
+
 }

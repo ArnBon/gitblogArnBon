@@ -80,7 +80,7 @@
 
                     <!--video 26 imagen con dropzone-->
                     <div class="form-group">
-                        <div class="dropzone"></div>                    
+                        <div class="dropzone"></div>
                     </div>
                     <!--fin -->
 
@@ -91,6 +91,24 @@
             </div>
         </div>
     </form>
+    <div class="col-md-8">
+        <div class="box-primary">
+            <div class="box-body">
+                <div class="row">
+                    @foreach($post->photos as $photo)
+                    <form method="POST" action="{{ route('admin.photos.destroy', $photo) }}">
+                        {{method_field('DELETE')}} {{csrf_field()}}
+                        <div class="col-md-2">
+                            <button class="btn btn-danger btn-xs" style="position: absolute"><i class="fa fa-remove"></i></button>
+
+                            <img class="img-responsive" src="{{ url($photo->url) }}">
+                        </div>
+                    </form>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @stop
 
@@ -124,24 +142,25 @@
     $('.select2').select2()
 
     CKEDITOR.replace('editor');
+    CKEDITOR.config.height = 430;
 
-      var myDropzone = new Dropzone('.dropzone',{       
-        url:'/admin/posts/{{ $post->url }}/photos',  
-        acceptedFiles: 'image/*',//con esto solo permite imagenes        
+    var myDropzone = new Dropzone('.dropzone', {
+        url: '/admin/posts/{{ $post->url }}/photos'
+        , acceptedFiles: 'image/*', //con esto solo permite imagenes        
         maxFilesize: 2, //restringir el tamaño del archivo medido en megas
-        paramName: 'photo',
-        headers: {
+        paramName: 'photo'
+        , headers: {
             'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        dictDefaultMessage: 'Arrastra las fotos aqui para subirlas'
-    });  
+        }
+        , dictDefaultMessage: 'Arrastra las fotos aqui para subirlas'
+    });
 
-    myDropzone.on('error', function(file, res){
-              
+    myDropzone.on('error', function(file, res) {
+
         var msg = res.errors.photo[0];
         $('.dz-error-message:last > span').text(msg);
-    }); 
-    
+    });
+
     Dropzone.autoDiscover = false; //para que no se autoinicialize
 
 </script>
