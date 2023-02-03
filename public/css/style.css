@@ -72,18 +72,18 @@ header nav li a:hover{
 
 .masonry {
     column-count: 2;
-    -moz-column-count: 2;
-    -webkit-column-count: 2;
+    /* -moz-column-count: 2; */
+    /* -webkit-column-count: 2; */
     column-gap: 4px;
-    -moz-column-gap: 4px;
-    -webkit-column-gap: 4px;
+    /* -moz-column-gap: 4px;
+    -webkit-column-gap: 4px; */
 }
 .masonry .gallery-image {
     display: inline-block;
     width: 100%;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px;
     padding: 4px;
-    border: 1px solid #000;
+    border: 1px solid #000; */
 }
 cite, .cite{
 	font-size: 22px;
@@ -282,4 +282,16 @@ a.btn-bar{
 		list-style-type: none;
 		float: left;
 		margin-right: 10px;
+	}
+
+	.overlay {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 24.4%;
+		height: 34%;
+		position: absolute;
+		color: white;
+		font-size: 50px;
+		background-color: rgba(0, 0, 0, .7);
 	}
