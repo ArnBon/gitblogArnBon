@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="/css/responsive.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-	@stack('scripts')
+	@stack('styles')
 	
 </head>
 <body>
@@ -65,7 +65,7 @@
 			</div>
 		</footer>
 	</section>
-	
+	@stack('scripts')
 </body>
 </html>
     <!--fin footer-->

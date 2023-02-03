@@ -295,3 +295,7 @@ a.btn-bar{
 		font-size: 50px;
 		background-color: rgba(0, 0, 0, .7);
 	}
+
+	.carousel-inner .item img{
+		width: 100%;
+	}
