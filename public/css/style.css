@@ -299,3 +299,8 @@ a.btn-bar{
 	.carousel-inner .item img{
 		width: 100%;
 	}
+
+	.post .category a {
+		color: inherit;
+		font-size: inherit;
+	}
