@@ -19,6 +19,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/', 'PagesController@home');
 Route::get('blog/{post}', 'PostsController@show')->name('posts.show');
 Route::get('categorias/{category}', 'CategoriesController@show')->name('categories.show');
+Route::get('etiquetas/{tag}', 'TagsController@show')->name('tags.show');
 Route::get('admin', 'HomeController@index'); 
 
 /*Rutas para la administración*/

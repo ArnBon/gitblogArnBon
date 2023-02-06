@@ -304,3 +304,8 @@ a.btn-bar{
 		color: inherit;
 		font-size: inherit;
 	}
+
+	.post .tag a {
+		color: inherit;
+		font-size: inherit;
+	}
