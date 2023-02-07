@@ -32,12 +32,17 @@ class Post extends Model
         return $this->hasMany(Photo::class);
     }
 
-    //video 19 con query scopes cambiamos la consulta para que nos traiga las fechas no nulas
     public function scopePublished($query)
     {
         $query->whereNotNull('published_at')
         ->where('published_at','<=',Carbon::now())
         ->latest('published_at');
+    }
+
+    public function setTitleAttribute($title)
+    {
+        $this->attributes['title'] = $title;
+        $this->attributes['url'] = str_slug($title);
     }
 
 }
