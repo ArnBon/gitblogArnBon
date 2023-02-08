@@ -5,6 +5,7 @@ use App\Category;
 use App\Tag; //agregado video 7
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 /**Archivo creado en el video 6 */
 
@@ -17,6 +18,7 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
+        Storage::deleteDirectory('posts');
         Post::truncate();
         Category::truncate();
         Tag::truncate(); //agregado video 7

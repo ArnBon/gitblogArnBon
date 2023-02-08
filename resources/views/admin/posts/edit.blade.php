@@ -97,6 +97,8 @@
                         </select>
                         {!! $errors->first('category', '<span class="help-block">:message</span>') !!}
                     </div>
+
+
                     <div class="form-group {{ $errors->has('tags') ? 'has-error' : ''  }}">
                         <label>Etiquetas</label>
                         <select name="tags[]" class="form-control select2" multiple="multiple" data-placeholder="Selecciona una o mas etiquetas" style="width: 100%;">
@@ -108,6 +110,8 @@
                         </select>
                         {!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
                     </div>
+
+                    
                     <div class="form-group {{ $errors->has('excerpt') ? 'has-error' : ''  }}">
                         <label>Extracto publicación</label>
                         <textarea name="excerpt" class="form-control" placeholder="Ingresa un extracto de la publicación">{{ old('excerpt', $post->excerpt) }}</textarea>
