@@ -8,6 +8,7 @@ use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
 
 class PostsController extends Controller
 {
@@ -41,39 +42,10 @@ class PostsController extends Controller
         return view('admin.posts.edit', compact('post', 'categories', 'tags'));  //aqui muestra la vista de edit
     }
 
-    public function update(Post $post, Request $request) 
-    {
-        $this->validate($request, [
-            'title'    => 'required',
-            'body'     => 'required',
-            'category' => 'required',
-            'tags'     => 'required',
-            'excerpt'  => 'required'
-        ]);
-        // $post->title        = $request->get('title');
-        // $post->url          = str_slug($request->get('title'));
-        $post->body         = $request->get('body');
-        $post->iframe       = $request->get('iframe');
-        $post->excerpt      = $request->get('excerpt');
-        $post->published_at = $request->filled('published_at')
-                                        ? Carbon:: parse($request->get('published_at'))
-                                        : null;
-        
-
-        $post->category_id  = Category::find($cat = $request->get('category'))
-                              ? $cat
-                              : Category::create(['name' => $cat])->id;
-        $post->save();
-
-        $tags = [];
-        foreach($request->get('tags') as $tag)
-        {
-            $tags[] = Tag::find($tag)
-                      ? $tag
-                      : Tag::create(['name' => $tag])->id;
-        }        
-        $post->tags()->sync($tags);
-
+    public function update(Post $post, StorePostRequest $request) 
+    {   
+        $post->update($request->all());
+        $post->syncTags($request->get('tags'));
         return redirect()->route('admin.posts.edit', $post)->with('flash', 'Tu publicación ha sido guardada !!');
     }
 }

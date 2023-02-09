@@ -9,7 +9,9 @@ use Carbon\Carbon; /*se coloco en el video 4*/
 class Post extends Model
 {
     protected $dates = ['published_at']; /*se coloco en el video 4 por defecto laravel trata los campos fechas como instancia de carbon*/
-    protected $guarded = []; /**video 17 */
+    
+    protected $fillable = [
+         'title', 'body', 'iframe', 'excerpt', 'published_at', 'category_id']; 
 
     public function getRouteKeyName()
     {
@@ -44,6 +46,28 @@ class Post extends Model
         $this->attributes['title'] = $title;
         $this->attributes['url'] = str_slug($title);
     }
+
+    public function setPublishedAtAttribute($published_at)
+    {
+        $this->attributes['published_at'] = $published_at ? Carbon::parse($published_at) : null;
+    }
+
+    public function setcategoryIdAttribute($category)
+    {
+        $this->attributes['category_id'] = Category::find($category)
+                                            ? $category
+                                            : Category::create(['name' => $category])->id;
+    }
+
+    public function syncTags($tags)
+    {
+        $tagIds = collect($tags)->map(function($tagIds){
+            return Tag::find($tagIds) ? $tagIds : Tag::create(['name' => $tagIds])->id;
+        });
+        return $this->tags()->sync($tagIds);
+    }
+
+
 
 }
 
