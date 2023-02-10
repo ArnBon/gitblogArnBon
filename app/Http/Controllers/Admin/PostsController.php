@@ -46,6 +46,26 @@ class PostsController extends Controller
     {   
         $post->update($request->all());
         $post->syncTags($request->get('tags'));
-        return redirect()->route('admin.posts.edit', $post)->with('flash', 'Tu publicación ha sido guardada !!');
+        return redirect()->route('admin.posts.edit', $post)->with('flash', 'La publicación ha sido actualizada !!');
+    }
+
+    public function destroy(Post $post)
+    {
+        //$post->tags()->detach(); //quitara las etiquetas asignadas al post que se este eliminando
+
+        // foreach ($post->photos as $photo)
+        // {
+        //     $photo->delete();
+        // } PERO LO HACEMOS DE OTRA FORMA es decir asi:
+
+        // $post->photos->each(function($photo){
+        //     $photo->delete();
+        // }); PERO TAMBIEN LO PODEMOS HACER DE UNA FORMA MAS CORTA Y OPTIMA SEGUN ME CONVENGA
+
+        //$post->photos->each->delete();
+        $post->delete();
+        return redirect()
+            ->route('admin.posts.index')
+            ->with('flash', 'La publicación ha sido eliminada !!');
     }
 }

@@ -9,6 +9,19 @@ use Carbon\Carbon; /*se coloco en el video 4*/
 class Post extends Model
 {
     protected $dates = ['published_at']; /*se coloco en el video 4 por defecto laravel trata los campos fechas como instancia de carbon*/
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($post){
+            $post->tags()->detach(); 
+            $post->photos->each->delete();
+        });
+
+        /**cuando estemos eliminando un posts se recibe por aqui luego elimina la relacion de los tags y finalmente borra la foto 
+         * por cada foto que se elimine se estara escuchando el evento deleting y las eliminamos del almacenamiento        */
+    }
     
     protected $fillable = [
          'title', 'body', 'iframe', 'excerpt', 'published_at', 'category_id']; 
