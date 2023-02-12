@@ -29,7 +29,13 @@ class PostsController extends Controller
     {
         $this->validate($request, ['title' => 'required|min:3']); //validamos
 
-        $post = Post::create( $request->only('title') );
+        $post = Post::create( $request->only('title') );        
+
+        /**Nota: si queremos hacer esto de forma automatica podemos sobreescribir el metodo create que esta con el Post::create cortamos 
+         * $post->url = str_slug($request->get('title')) . "-{$post->id}"; //concatenamos el - y el id del post
+        $post->save();
+        y lo pegamos en el modelo en el metodo static
+        */
 
         return redirect()->route('admin.posts.edit', $post); //redireccionamos
     }

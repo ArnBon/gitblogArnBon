@@ -54,11 +54,54 @@ class Post extends Model
         ->latest('published_at');
     }
 
-    public function setTitleAttribute($title)
+    public static function create(array $attributes = [])
     {
-        $this->attributes['title'] = $title;
-        $this->attributes['url'] = str_slug($title);
+        // $post = static::query()->create($attributes); //esto devuelve el post recien creado
+        // // $post->url = str_slug($request->get('title')) . "-{$post->id}"; //concatenamos el - y el id del post sustituimos ($request->get('title') por:
+        // $post->url = str_slug($attributes['title']) . "-{$post->id}"; 
+        // $post->save(); // viene de PostsController de la administración
+        //return $post;
+/*Nota: solo queremos que nos agregue el id  y cuando se repita una url en caso contrario no agregamos nada:*/
+        $post = static::query()->create($attributes); //creamos el post solo con el titulo
+        $post->generateUrl();
+        return $post;
     }
+
+    public function generateUrl()
+    {
+        $url = str_slug($this->title); //generamos la url amigable basada en ese titulo (en caso que el post se cree por 1era vez)
+        if ($this->whereUrl($url)->exists()) { //verificamos si existe otro post con esa url 
+            $url = "{$url}-{$this->id}"; //si existe le agregamos el post recien creado
+        }
+        $this->url = $url; //asignamos esa url al post (en caso de duplicacion del titulo del post)
+        $this->save();
+    }
+
+
+
+    // public function setTitleAttribute($title)
+    // {
+    //     $this->attributes['title'] = $title;
+
+    //     //$url = str_slug($title);
+    //     // $duplicateUrlCount = Post::where('url', 'LIKE', "{$url}%")->count();
+
+    //     // if($duplicateUrlCount)
+    //     // {
+    //         // $url .= "-" . ++$duplicateUrlCount;
+    //     //    $url .= "-" . uniqid();
+    //     //}
+    //         //OTRA OPCION SERIA UTILIZAR UN WHILE:
+
+    //         $originalUrl = $url = str_slug($title);
+    //         $count = 1;
+
+    //         while (Post::where('url', $url)->exists()) {
+    //             $url = "{$originalUrl}-" . ++$count;
+    //         }
+
+    //     $this->attributes['url'] = str_slug($url);
+    // }
 
     public function setPublishedAtAttribute($published_at)
     {
