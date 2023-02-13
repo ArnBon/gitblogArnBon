@@ -2,7 +2,7 @@
 
 use App\Post;
 use App\Category;
-use App\Tag; //agregado video 7
+use App\Tag; 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
@@ -27,9 +27,11 @@ class PostsTableSeeder extends Seeder
         $category->name = "Categoria 1";
         $category->save();
 
+
         $category = new Category;
         $category->name = "Categoria 2";
         $category->save();
+
 
         $category = new Category;
         $category->name = "Categoria 3";
@@ -39,6 +41,7 @@ class PostsTableSeeder extends Seeder
         $category->name = "Categoria 4";
         $category->save();
 
+
         $post = new Post;
         $post->title = "Mi primer post";
         $post->url = str_slug("Mi primer post");              
@@ -46,17 +49,21 @@ class PostsTableSeeder extends Seeder
         $post->body = "<p>Contenido de mi primer post</p>";
         $post->published_at = Carbon::now()->subDays(4);
         $post->category_id = 4;
+        $post->user_id = 1;
+
         $post->save();
 
         $post->tags()->attach(Tag::create(['name' => 'Etiqueta 4']));//agregado video 7
 
 		$post = new Post;
         $post->title = "Mi segundo post";
-       $post->url = str_slug("Mi segundo post");
+        $post->url = str_slug("Mi segundo post");
         $post->excerpt = "Extracto de mi segundo post";
         $post->body = "<p>Contenido de mi segundo post</p>";
         $post->published_at = Carbon::now()->subDays(3);
         $post->category_id = 3;
+        $post->user_id = 1;
+
         $post->save();
 
         $post->tags()->attach(Tag::create(['name' => 'Etiqueta 3']));//agregado video 7
@@ -68,6 +75,8 @@ class PostsTableSeeder extends Seeder
         $post->body = "<pContenido de mi tercer post></p>";
         $post->published_at = Carbon::now()->subDays(2);
         $post->category_id = 2;
+        $post->user_id = 1;
+
         $post->save();
 
         $post->tags()->attach(Tag::create(['name' => 'Etiqueta 2']));//agregado video 7
@@ -79,6 +88,8 @@ class PostsTableSeeder extends Seeder
         $post->body = "<p>Contenido de mi cuarto post</p>";
         $post->published_at = Carbon::now()->subDays(1);
         $post->category_id = 1;
+        $post->user_id = 1;
+
         $post->save(); 
 
         $post->tags()->attach(Tag::create(['name' => 'Etiqueta 1']));//agregado video 7

@@ -24,7 +24,7 @@ class Post extends Model
     }
     
     protected $fillable = [
-         'title', 'body', 'iframe', 'excerpt', 'published_at', 'category_id']; 
+         'title', 'body', 'iframe', 'excerpt', 'published_at', 'category_id', 'user_id']; 
 
     public function getRouteKeyName()
     {
@@ -47,6 +47,12 @@ class Post extends Model
         return $this->hasMany(Photo::class);
     }
 
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id'); //debemos referenciar el user_id ya que por defecto laravel va a buscar owner_id al no encontrarlo dará un error por eso lo sobreescribimos  
+
+    }
+
     public function scopePublished($query)
     {
         $query->whereNotNull('published_at')
@@ -56,7 +62,8 @@ class Post extends Model
 
     public function isPublished()
     {
-        return ! is_null($this->published_at) && $this->published_at < today();
+        return ! is_null($this->published_at) && $this->published_at < today(); 
+        /**Este metodo esta construido con la finalidad de que no puedan colocarse fechas a futuro */
     }
 
     public static function create(array $attributes = [])

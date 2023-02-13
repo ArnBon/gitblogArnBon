@@ -21,7 +21,8 @@ class CreatePostsTable extends Migration
             $table->mediumText('body')->nullable();
             $table->mediumText('iframe')->nullable();
             $table->timestamp('published_at')->nullable();            
-            $table->unsignedInteger('category_id')->nullable(); // agregado en el video 5 para casar la categoria con el post
+            $table->unsignedInteger('category_id')->nullable();
+            $table->unsignedInteger('user_id');//aqui vamos a almacenar el identificador del usuario que crea cada post          
             $table->timestamps();
         });
     }
