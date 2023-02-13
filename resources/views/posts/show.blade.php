@@ -9,25 +9,29 @@
     @if($post->photos->count() === 1)
     <figure><img src="{{ url($post->photos->first()->url) }}" alt="" class="img-responsive"></figure>
     @elseif($post->photos->count() > 1)
-        @include('posts.carousel')
+    @include('posts.carousel')
     @elseif($post->iframe)
 
 
-			<div class="video">
-			{!! $post->iframe !!}
-			</div>
+    <div class="video">
+        {!! $post->iframe !!}
+    </div>
 
 
-	        @endif
+    @endif
 
     <div class="content-post">
         <header class="container-flex space-between">
             <div class="date">
-                <span class="c-gris">{{ $post->published_at->format('M-d') }} </span>
+                <span class="c-gris">{{ optional ($post->published_at)->format('M-d') }} </span>
             </div>
+
+            @if($post->category)
             <div class="post-category">
                 <span class="category">{{ $post->category->name }}</span>
             </div>
+            @endif
+
         </header>
         <h1>{{ $post->title }}</h1>
         <div class="divider"></div>
