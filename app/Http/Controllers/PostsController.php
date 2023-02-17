@@ -16,10 +16,10 @@ class PostsController extends Controller
         //video 21 model bindings
         // return view('posts.show', compact('post'));
 
-        // if ($post->isPublished() || auth()->check()) 
-        // {
-        //     return view('posts.show', compact('post'));
-        // }
+        if ($post->isPublished() || auth()->check()) 
+        {
+            return view('posts.show', compact('post'));
+        }
         abort(404);
     }
 }
