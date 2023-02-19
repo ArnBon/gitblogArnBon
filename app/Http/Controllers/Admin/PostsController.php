@@ -14,26 +14,22 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
-        return view('admin.posts.index', compact('posts'));
-    }
+         //$posts = Post::all();
+        // return view('admin.posts.index', compact('posts'));
+       /**  para el video 50 mostrar los posts dependiendo del usuario conectado es decir que un usuario vea sus propios post*/
 
-    // public function create()
-    // {
-    //     $categories = Category::all();
-    //     $tags = Tag::all();
-    //     return view('admin.posts.create', compact('categories', 'tags'));
-    // }
+      // $posts = Post::where('user_id', auth()->id())->get(); //trae los posts del usuario actualmente autenticado
+       $posts = auth()->user()->posts; //trae al usuario actualmente autenticado a traves de la relacion del post 
+       return view('admin.posts.index', compact('posts'));
+    }
 
     public function store(Request $request)
     {
+        $this->authorize('create', New Post);
         $this->validate($request, ['title' => 'required|min:3']); //validamos
 
         // $post = Post::create( $request->only('title') );
-        $post = Post::create( [
-            'title'   => $request->get('title'),
-            'user_id' => auth()->id()
-        ]);        
+        $post = Post::create($request->all() );        
 
         /**Nota: si queremos hacer esto de forma automatica podemos sobreescribir el metodo create que esta con el Post::create cortamos 
          * $post->url = str_slug($request->get('title')) . "-{$post->id}"; //concatenamos el - y el id del post
@@ -46,14 +42,28 @@ class PostsController extends Controller
 
     public function edit(Post $post)
     {
-        $categories = Category::all();
-        $tags = Tag::all();
-       
-        return view('admin.posts.edit', compact('post', 'categories', 'tags'));  //aqui muestra la vista de edit
+
+        $this->authorize('view', $post);
+        /**como 1er parametro recibe la accion que queremos autorizar
+         * que es equivalente al nombre del metodo que tenemos en
+         * la politica en este caso el view.
+         * 
+         * como 2do parametro le pasasmos el post que quremos 
+         * autorizar
+         */
+
+         return view('admin.posts.edit', [            
+            'post'       => $post,
+            'tags'       => Tag::all(),
+            'categories' => Category::all()
+         ]);   
+        
     }
 
     public function update(Post $post, StorePostRequest $request) 
-    {   
+    {  
+        $this->authorize('update', $post);
+
         $post->update($request->all());
         $post->syncTags($request->get('tags'));
         return redirect()->route('admin.posts.edit', $post)->with('flash', 'La publicación ha sido actualizada !!');
@@ -73,6 +83,7 @@ class PostsController extends Controller
         // }); PERO TAMBIEN LO PODEMOS HACER DE UNA FORMA MAS CORTA Y OPTIMA SEGUN ME CONVENGA
 
         //$post->photos->each->delete();
+        $this->authorize('delete', $post);
         $post->delete();
         return redirect()
             ->route('admin.posts.index')

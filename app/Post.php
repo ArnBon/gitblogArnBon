@@ -68,6 +68,7 @@ class Post extends Model
 
     public static function create(array $attributes = [])
     {
+        $attributes['user_id'] = auth()->id(); //video 50
         // $post = static::query()->create($attributes); //esto devuelve el post recien creado
         // // $post->url = str_slug($request->get('title')) . "-{$post->id}"; //concatenamos el - y el id del post sustituimos ($request->get('title') por:
         // $post->url = str_slug($attributes['title']) . "-{$post->id}"; 
