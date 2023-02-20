@@ -40,10 +40,10 @@
 				<figure class="logo"><img src="/img/logo.png" alt=""></figure>
 				<nav>
 					<ul class="container-flex space-center list-unstyled">
-						<li><a href="index.html" class="text-uppercase c-white">home</a></li>
-						<li><a href="about.html" class="text-uppercase c-white">about</a></li>
-						<li><a href="archive.html" class="text-uppercase c-white">archive</a></li>
-						<li><a href="contact.html" class="text-uppercase c-white">contact</a></li>
+						 <li><a href="{{route('pages.home')}}" class="pure-menu-link c-gris-2 text-uppercase {{ setActiveRoute('pages.home') }}">Inicio</a></li>
+						 <li><a href="{{route('pages.about')}}" class="pure-menu-link c-gris-2 text-uppercase {{ setActiveRoute('pages.about') }}">Nosotros</a></li>
+						 <li><a href="{{route('pages.archive')}}" class="pure-menu-link c-gris-2 text-uppercase {{ setActiveRoute('pages.archive') }}">Archivo</a></li>
+						 <li><a href="{{route('pages.contact')}}" class="pure-menu-link c-gris-2 text-uppercase {{ setActiveRoute('pages.contact') }}">Contacto</a></li>
 					</ul>
 				</nav>
 				<div class="divider-2"></div>

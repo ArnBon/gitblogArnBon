@@ -187,6 +187,15 @@
         $('.dz-error-message:last > span').text(msg);
     });
 
+    // init Masonry
+var $grid = $('.grid').masonry({
+  // options...
+});
+// layout Masonry after each image loads
+$grid.imagesLoaded().progress( function() {
+  $grid.masonry('layout');
+});
+
     Dropzone.autoDiscover = false; //para que no se autoinicialize
 
 </script>
