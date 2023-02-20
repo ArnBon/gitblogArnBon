@@ -18,21 +18,22 @@
 
 
     @if($post->photos->count())
-    <div class="col-md-12">
-        <div class="box box-primary">
-            <div class="box-body">
-                @foreach($post->photos as $photo)
-                <form method="POST" action="{{ route('admin.photos.destroy', $photo) }}">
-                    {{method_field('DELETE')}} {{csrf_field()}}
-                    <div class="col-md-2">
-                        <button class="btn btn-danger btn-xs" style="position: absolute"><i class="fa fa-remove"></i></button>
-                        <img class="img-responsive" src="{{ url($photo->url) }}">
-                    </div>
-                </form>
-                @endforeach
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-body">
+                    @foreach($post->photos as $photo)
+                    <form method="POST" action="{{ route('admin.photos.destroy', $photo) }}">
+                        {{method_field('DELETE')}} {{csrf_field()}}
+                        <div class="col-md-2">
+                            <button class="btn btn-danger btn-xs" style="position: absolute"><i class="fa fa-remove"></i></button>
+                            <img class="img-responsive" src="{{ url( asset('storage/'.$photo->url)) }}">
+                                                        
+                        </div>
+                    </form>
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
     @endif
 
 
