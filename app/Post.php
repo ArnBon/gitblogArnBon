@@ -63,7 +63,7 @@ class Post extends Model
     public function scopeAllowed($query)
     {
          // video 52
-       if (auth()->user()->hasRole('Admin')) 
+       if (auth()->user()->can('view', $this)) 
        {
         return $query;
        } 

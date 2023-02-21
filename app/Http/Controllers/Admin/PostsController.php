@@ -48,7 +48,7 @@ class PostsController extends Controller
     public function edit(Post $post)
     {
 
-        $this->authorize('view', $post);
+        $this->authorize('update', $post);
         /**como 1er parametro recibe la accion que queremos autorizar
          * que es equivalente al nombre del metodo que tenemos en
          * la politica en este caso el view.

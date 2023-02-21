@@ -27,7 +27,8 @@ class PostPolicy
      */
     public function view(User $user, Post $post)
     {
-        return $user->id === $post->user_id;
+        return $user->id === $post->user_id
+        || $user->hasPermissionTo('View posts');
         /*el id del usuario (lo recibimos por parametro User $user) 
         que este autenticado es igual al user_id del post
         si son iguales retornará verdadero de lo contrario será falso */
@@ -41,7 +42,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->hasPermissionTo('Create posts');
     }
 
     /**
@@ -53,7 +54,8 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        return $user->id === $post->user_id;
+        return $user->id === $post->user_id
+        || $user->hasPermissionTo('Update posts');
     }
 
     /**
@@ -65,6 +67,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        return $user->id === $post->user_id;
+        return $user->id === $post->user_id
+        || $user->hasPermissionTo('Delete posts');
     }
 }
