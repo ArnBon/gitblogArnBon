@@ -19,7 +19,12 @@ class PostsController extends Controller
        /**  para el video 50 mostrar los posts dependiendo del usuario conectado es decir que un usuario vea sus propios post*/
 
       // $posts = Post::where('user_id', auth()->id())->get(); //trae los posts del usuario actualmente autenticado
-       $posts = auth()->user()->posts; //trae al usuario actualmente autenticado a traves de la relacion del post 
+       //$posts = auth()->user()->posts; //trae al usuario actualmente autenticado a traves de la relacion del post 
+
+      
+
+       $posts = Post::allowed()->get();
+       
        return view('admin.posts.index', compact('posts'));
     }
 
