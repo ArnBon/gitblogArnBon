@@ -5,7 +5,7 @@
     <div class="col-md-3">
         <div class="box box-primary">
             <div class="box-body box-profile">
-                <img class="profile-user-img img-responsive img-circle" src="/adminlte/img/user4-128x128.jpg" alt="{{ $user->name }}">
+                <img class="profile-user-img img-responsive img-circle" src="/adminlte/dist/img/user4-128x128.jpg" alt="{{ $user->name }}">
 
                 <h3 class="profile-username text-center">{{ $user->name }}</h3>
 
