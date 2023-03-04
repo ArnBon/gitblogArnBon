@@ -51,7 +51,7 @@
     <div class="col-md-6">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Roles y Permisos</h3>
+                <h3 class="box-title">Roles</h3>
             </div>
             <div class="box-body">                
                 <form method="POST" action="{{ route('admin.users.roles.update', $user) }}">
@@ -69,6 +69,31 @@
                     @endforeach
 
                     <button class="btn btn-primary btn-block">Actualizar roles</button>
+                </form>                
+                
+            </div>
+        </div>
+
+         <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Permisos</h3>
+            </div>
+            <div class="box-body">                
+                <form method="POST" action="{{ route('admin.users.permissions.update', $user) }}">
+                    {{ csrf_field() }} {{ method_field('PUT') }}
+
+                    @foreach ($permissions as $id => $name)
+                        <div class="checkbox">
+                            <label>
+                                <input 
+                                    name="permissions[]" type="checkbox" value="{{ $name }}"
+                                     {{ $user->permissions->contains($id) ? 'checked':'' }}>
+                                {{ $name }}
+                            </label>
+                        </div>
+                    @endforeach
+
+                    <button class="btn btn-primary btn-block">Actualizar permisos</button>
                 </form>                
                 
             </div>
