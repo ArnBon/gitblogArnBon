@@ -10,6 +10,7 @@ class UsersPermissionsController extends Controller
 {
     public function update(Request $request, User $user)
     {
+        //return $request;
         // $user->syncPermissions($request->permissions);
         // return back()->withFlash('Los permisos han sido actualizados');
 
@@ -18,11 +19,13 @@ class UsersPermissionsController extends Controller
         campos null para resolverlo lo hacemos asi:
         */
 
+
         $user->permissions()->detach(); //con esto quita los permisos
 
-        if ($request->filled('permissions')) { // el usuario ha seleccionado algun permiso??
+        if ($request->filled('permissions'))
+         { // el usuario ha seleccionado algun permiso??
             $user->givePermissionTo($request->permissions); //si seleccionó algun permiso le pasamos el array de permisos ($request->permissions) si el array esta vacio quiere decir que el 
-        }
+         }
         return back()->withFlash('Los permisos han sido actualizados');
     }
 }

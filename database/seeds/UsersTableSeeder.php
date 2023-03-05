@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
 
         $adminRole = Role::create(['name' => 'Admin']);
         $writerRole = Role::create(['name' => 'Writer']);
+
         $viewPostsPermission   = Permission::create(['name' => 'View posts']);
         $createPostsPermission = Permission::create(['name' => 'Create posts']);
         $updatePostsPermission = Permission::create(['name' => 'Update posts']);
@@ -32,6 +33,12 @@ class UsersTableSeeder extends Seeder
         $admin->save();
 
         $admin->assignRole($adminRole);
+        $admin->givePermissionTo($viewPostsPermission);   
+        $admin->givePermissionTo($createPostsPermission); 
+        $admin->givePermissionTo($updatePostsPermission); 
+        $admin->givePermissionTo($deletePostsPermission); 
+
+       
 
         $writer = new User;
         $writer->name = 'Yuney Herrera';
@@ -40,5 +47,6 @@ class UsersTableSeeder extends Seeder
         $writer->save();
 
         $writer->assignRole($writerRole);
+        $writer->givePermissionTo($viewPostsPermission);  
     }
 }
