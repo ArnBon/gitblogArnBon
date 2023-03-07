@@ -30,7 +30,10 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $user = new User;
+        $roles = Role::with('permissions')->get();
+        $permissions = Permission::pluck('name', 'id');
+        return view('admin.users.create', compact('user', 'roles', 'permissions'));        
     }
 
     /**
@@ -41,7 +44,25 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+    //    Validar el formulario
+           
+
+    //    Generar una contraseña
+            
+
+    //    creamos el usuario
+           
+
+    //    asignamos los roles
+       
+    //    asignamos los permisos
+        
+    //    Enviamos email 
+    // para la clase 63
+
+    //    Retornamos un mensaje al usuario
+        
     }
 
     /**

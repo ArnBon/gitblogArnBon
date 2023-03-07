@@ -57,7 +57,7 @@
                 <form method="POST" action="{{ route('admin.users.roles.update', $user) }}">
                     {{ csrf_field() }} {{ method_field('PUT') }}
 
-                    @foreach ($roles as $role)
+                    {{-- @foreach ($roles as $role)
                         <div class="checkbox">
                             <label>
                                 <input 
@@ -67,7 +67,8 @@
                                 <small class="text-muted">{{ $role->permissions->pluck('name')->implode(', ') }}</small>
                             </label>
                         </div>
-                    @endforeach
+                    @endforeach --}}
+                    @include('admin.roles.checkboxes')
 
                     <button class="btn btn-primary btn-block">Actualizar roles</button>
                 </form>                
@@ -83,7 +84,7 @@
                 <form method="POST" action="{{ route('admin.users.permissions.update', $user) }}">
                     {{ csrf_field() }} {{ method_field('PUT') }}
 
-                    @foreach ($permissions as $id => $name)
+                    {{-- @foreach ($permissions as $id => $name)
                         <div class="checkbox">
                             <label>
                                 <input 
@@ -92,9 +93,9 @@
                                 {{ $name }}
                             </label>
                         </div>
-                    @endforeach
+                    @endforeach --}}
 
-
+                    @include('admin.permissions.checkboxes')
 
                     <button class="btn btn-primary btn-block">Actualizar permisos</button>
                 </form>                
