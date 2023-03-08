@@ -40,7 +40,7 @@
                         <a href="{{ route('admin.users.show', $user) }}" class="btn btn-xs btn-default" target="_blank"><i class="fa fa-eye"></i></a>
                         <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-xs btn-info" target="_blank"><i class="fa fa-pencil"></i></a>
 
-
+                        
                         <form method="POST" action="{{ route('admin.users.destroy', $user) }}" style="display: inline">
                         {{csrf_field()}} {{method_field('DELETE')}}
                         <button class="btn btn-xs btn-danger" onclick="return confirm('Se va a eliminar esta publicación')">
