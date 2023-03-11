@@ -10,8 +10,8 @@
     <li class="active">Usuarios</li>
 </ol>
 @stop
-
 @section('content')
+
 <div class="box box-primary">
     <div class="box-header">
         <h3 class="box-title">Listado de usuarios</h3>
