@@ -9,7 +9,8 @@ Utiliza las credenciales para acceder al sistema.
 | {{ $user->email }}  | {{ $password }} |
 @endcomponent
 
-@component('mail::button', ['url' => 'login'])
+@component('mail::button', ['url' => url('login')])
+
 Login
 @endcomponent
 
