@@ -36,4 +36,15 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($password);
     }
+
+    public function scopeAllowed($query)
+    {
+         // video 65
+       if (auth()->user()->can('view', $this)) 
+       {
+        return $query;
+       } 
+        return $query->where('id', auth()->id());
+       
+    }
 }
