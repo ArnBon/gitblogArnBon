@@ -53,26 +53,24 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Roles</h3>
             </div>
-            <div class="box-body">                
+            <div class="box-body"> 
+                 @role('Admin'){{--para mostrar el formulario solo al administrador  --}}
                 <form method="POST" action="{{ route('admin.users.roles.update', $user) }}">
                     {{ csrf_field() }} {{ method_field('PUT') }}
 
-                    {{-- @foreach ($roles as $role)
-                        <div class="checkbox">
-                            <label>
-                                <input 
-                                    name="roles[]" type="checkbox" value="{{ $role->name }}"
-                                     {{ $user->roles->contains($role->id) ? 'checked':'' }}>
-                                {{ $role->name }} <br>
-                                <small class="text-muted">{{ $role->permissions->pluck('name')->implode(', ') }}</small>
-                            </label>
-                        </div>
-                    @endforeach --}}
                     @include('admin.roles.checkboxes')
 
                     <button class="btn btn-primary btn-block">Actualizar roles</button>
                 </form>                
-                
+                @else 
+                <ul class="list-group">
+                @forelse($user->roles as $role)
+                    <li class="list-group-item">{{ $role->name }}</li>
+                        @empty
+                            <li class="list-group-item">No tiene Roles</li>                        
+                @endforelse                    
+                </ul>
+                @endrole
             </div>
         </div>
 
@@ -80,26 +78,25 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Permisos</h3>
             </div>
-            <div class="box-body">                
+            <div class="box-body"> 
+            @role('Admin')               
                 <form method="POST" action="{{ route('admin.users.permissions.update', $user) }}">
-                    {{ csrf_field() }} {{ method_field('PUT') }}
-
-                    {{-- @foreach ($permissions as $id => $name)
-                        <div class="checkbox">
-                            <label>
-                                <input 
-                                    name="permissions[]" type="checkbox" value="{{ $name }}"
-                                     {{ $user->permissions->contains($id) ? 'checked':'' }}>
-                                {{ $name }}
-                            </label>
-                        </div>
-                    @endforeach --}}
+                    {{ csrf_field() }} {{ method_field('PUT') }}                   
 
                     @include('admin.permissions.checkboxes')
 
                     <button class="btn btn-primary btn-block">Actualizar permisos</button>
                 </form>                
-                
+                @else
+                <ul class="list-group">
+                    @forelse($user->permissions as $permission)
+                    <li class="list-group-item">{{ $permission->name }}</li>
+                        @empty
+                            <li class="list-group-item">No tiene permisos</li>                        
+                    @endforelse
+                </ul>
+                @endrole
+
             </div>
         </div>
 
