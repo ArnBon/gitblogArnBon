@@ -43,7 +43,7 @@
                         
                         <form method="POST" action="{{ route('admin.users.destroy', $user) }}" style="display: inline">
                         {{csrf_field()}} {{method_field('DELETE')}}
-                        <button class="btn btn-xs btn-danger" onclick="return confirm('Se va a eliminar esta publicación')">
+                        <button class="btn btn-xs btn-danger" onclick="return confirm('Se va a eliminar este usuario')">
                         <i class="fa fa-trash"></i></button>
                         </form>
 

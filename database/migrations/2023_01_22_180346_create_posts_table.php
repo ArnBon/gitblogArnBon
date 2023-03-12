@@ -23,6 +23,10 @@ class CreatePostsTable extends Migration
             $table->timestamp('published_at')->nullable();            
             $table->unsignedInteger('category_id')->nullable();
             $table->unsignedInteger('user_id');//aqui vamos a almacenar el identificador del usuario que crea cada post          
+            
+            $table->foreign('user_id')->references('id')->on('users')
+                  ->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
