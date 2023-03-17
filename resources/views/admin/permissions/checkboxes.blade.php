@@ -3,7 +3,7 @@
         <label>
             <input 
                 name="permissions[]" type="checkbox" value="{{ $name }}"
-                    {{ $user->permissions->contains($id) ? 'checked':'' }}>
+                    {{ $model->permissions->contains($id) ? 'checked':'' }}>
             {{ $name }}
         </label>
     </div>

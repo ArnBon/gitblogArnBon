@@ -10,13 +10,15 @@
             </div>
             <div class="box-body">
 
-                @if($errors->any())
+                {{-- @if($errors->any())
                 <ul class="list-group">
                     @foreach($errors->all() as $error)
                     <li class="list-group-item list-group-item-danger"> {{ $error }} </li>
                     @endforeach
                 </ul>
-                @endif
+                @endif --}}
+                 @include('partials.error-messages')
+
 
                 <form method="POST" action="{{ route('admin.users.update', $user) }}">
                     {{ csrf_field() }} {{ method_field('PUT') }}
@@ -58,7 +60,8 @@
                 <form method="POST" action="{{ route('admin.users.roles.update', $user) }}">
                     {{ csrf_field() }} {{ method_field('PUT') }}
 
-                    @include('admin.roles.checkboxes')
+                    @include('admin.roles.checkboxes', ['model' => $user])
+
 
                     <button class="btn btn-primary btn-block">Actualizar roles</button>
                 </form>                
