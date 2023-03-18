@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SaveRolesRequest;
 use Spatie\Permission\Models\Permission;
 
 class RolesController extends Controller
@@ -40,15 +41,19 @@ class RolesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveRolesRequest $request)
     {
-        $data = $request->validate([
-            'name'         => 'required|unique:roles',
-            'display_name' => 'required',
-           // 'guard_name'   => 'required'
-        ]);
+        // $data = $request->validate([
+        //     'name'         => 'required|unique:roles',
+        //     'display_name' => 'required',
+        //    // 'guard_name'   => 'required'
+        // ], [
+        //     'name.required' => 'El campo rol es obligatorio',
+        //     'name.unique' => 'Este rol ya ha sido registrado',
+        //     'display_name.required' => 'El campo Descripción rol es obligatorio'
+        // ]);
 
-        $role = Role::create($data);
+        $role = Role::create($request->validated());
 
          //    asignamos los roles
         if ($request->has('permissions')) {
@@ -92,15 +97,14 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(SaveRolesRequest $request, Role $role)
     {
-        $data = $request->validate([
-            //'name'       => 'required|unique:roles,name,' . $role->id,
-            'display_name' => 'required',
-           // 'guard_name' => 'required'
-        ]);
+        // $data = $request->validate([ 'display_name' => 'required' ], 
+        // [
+        //     'display_name.required' => 'El campo rol es obligatorio'
+        // ]);
 
-        $role->update($data);
+        $role->update($request->validated());
 
         //quitamos todos los permisos antes de asignarlos en la actualización
         $role->permissions()->detach();
