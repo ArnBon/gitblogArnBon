@@ -23,8 +23,9 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Rol</th>
-                    <th>Guard</th>
+                    <th>Identificador</th>
+                    <th>Nombre</th>
+                    <th>Permisos</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -33,12 +34,12 @@
                     @foreach($roles as $role)
                     <td>{{ $role->id }}</td>
                     <td>{{ $role->name }}</td>
-                    <td>{{ $role->guard_name }}</td>
-                    
+                    {{-- <td>{{ $role->guard_name }}</td> --}}
+                    <td>{{ $role->display_name }}</td>
+                    <td>{{ $role->permissions->pluck('display_name')->implode(', ') }}</td>                    
                     <td>
                         <a href="{{ route('admin.roles.show', $role) }}" class="btn btn-xs btn-default" target="_blank"><i class="fa fa-eye"></i></a>
                         <a href="{{ route('admin.roles.edit', $role) }}" class="btn btn-xs btn-info" target="_blank"><i class="fa fa-pencil"></i></a>
-
 
                         <form method="POST" action="{{ route('admin.roles.destroy', $role) }}" style="display: inline">
                             {{csrf_field()}} {{method_field('DELETE')}}

@@ -13,7 +13,7 @@
                @include('partials.error-messages')
 
                 <form method="POST" action="{{ route('admin.roles.store') }}">
-                    {{ csrf_field() }}
+                 {{--    {{ csrf_field() }}
 
                     <div class="form-group">
                         <label for="name">Descripción Rol:</label>
@@ -34,7 +34,10 @@
                         <label>Permisos</label>
                         <hr>
                         @include('admin.permissions.checkboxes', ['model' => $role])
-                    </div>
+                    </div> --}}
+                    @include('admin.roles.form')
+
+                    
                     <button class="btn btn-primary btn-block">Crear rol</button>
                 </form>
             </div>

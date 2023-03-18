@@ -13,12 +13,20 @@
                 @include('partials.error-messages')
 
                 <form method="POST" action="{{ route('admin.roles.update', $role) }}">
-                    {{ csrf_field() }} {{ method_field('PUT') }}
+                  {{ method_field('PUT') }}
+                  {{-- {{ csrf_field() }} 
+                     
 
                     <div class="form-group">
-                        <label for="name">Descripción Rol:</label>
-                        <input name="name" value="{{ old('name', $role->name) }}" class="form-control">
+                        <label>Rol:</label>
+                        <input value="{{ $role->name }}" class="form-control" disabled>
                     </div>
+
+                    <div class="form-group">
+                        <label for="display_name">Descripción Rol:</label>
+                        <input name="display_name" value="{{ old('display_name', $role->display_name) }}" class="form-control">
+                    </div>
+
 
                     <div class="form-group">
                         <label for="guard">Guard:</label>
@@ -35,7 +43,10 @@
                         <label>Permisos</label>
                         <hr>
                         @include('admin.permissions.checkboxes', ['model' => $role])
-                    </div>
+                    </div> --}}
+
+                    @include('admin.roles.form')
+
                     <button class="btn btn-primary btn-block">Actualizar rol</button>
                 </form>
             </div>
