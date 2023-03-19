@@ -49,5 +49,29 @@
              </li>
          </ul>
      </li>
+
+
+
+          <li class="treeview {{ setActiveRoute(['admin.roles.index', 'admin.roles.create']) }}">
+
+              <a href="#"><i class="fa fa-users"></i> <span>Roles</span>
+                  <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+              </a>
+
+              <ul class="treeview-menu">
+                  <li class="{{ setActiveRoute('admin.roles.index') }}">
+                      <a href="{{ route('admin.roles.index') }}"><i class="fa fa-dashboard"></i>Ver todos los roles</a>
+                  </li>
+
+                  <li class="{{ setActiveRoute('admin.roles.create') }}">
+                      <a href="{{ route('admin.roles.create' ) }}"><i class="fa fa-pencil"></i>Crear rol</a>
+                  </li>
+              </ul>
+          </li>
+
+
+
  </ul>
  <!-- /.sidebar-menu -->

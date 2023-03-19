@@ -191,7 +191,8 @@ desired effect
 
                 <p>
                    {{-- {{auth()->user()->name}} - {{ auth()->user()->roles->pluck('display_name')->first() ? : 'Sin rol' }}- Web Developer                 --}}
-                   {{auth()->user()->name}} - {{ auth()->user()->getRoleDisplayNames() }}
+                   {{auth()->user()->name}} - {{ auth()->user()->getRoleDisplayNames() ? : 'Sin rol' }}
+
 
 
 
