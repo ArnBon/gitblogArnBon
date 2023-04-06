@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Tag;
 use App\Post;
 use App\Category;
-use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -21,10 +20,16 @@ class PostsController extends Controller
       // $posts = Post::where('user_id', auth()->id())->get(); //trae los posts del usuario actualmente autenticado
        //$posts = auth()->user()->posts; //trae al usuario actualmente autenticado a traves de la relacion del post 
 
-      
+        // if (auth()->user()->hasRole('Admin')) {
+        //     $posts = Post::all();
+        // } 
+        // else
+        // {
+        //     $posts = auth()->user()->posts;
+        // }
 
-       $posts = Post::allowed()->get();
-       
+
+       $posts = Post::allowed()->get();       
        return view('admin.posts.index', compact('posts'));
     }
 

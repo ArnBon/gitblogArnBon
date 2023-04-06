@@ -9,4 +9,5 @@
             {{ $name }}
         </label>
     </div>
+
 @endforeach
