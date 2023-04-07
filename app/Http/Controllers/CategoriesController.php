@@ -11,7 +11,7 @@ class CategoriesController extends Controller
     {
         return view('/pages.home', [
             'title' => "Publicaciones de la categoría '{$category->name}'",
-            'posts' => $category->posts()->paginate(1)
+            'posts' => $category->posts()->paginate()
         ]);
         /**de este modo estamos enviando una variable posts a la vista welcome pero solamente con los posts que pertenecen
          * a esta categoria a diferencia del home que estamos pasando todos los posts

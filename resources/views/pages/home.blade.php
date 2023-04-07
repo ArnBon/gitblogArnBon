@@ -7,7 +7,7 @@
 		<h3>{{ $title }}</h3>		
 	@endif
 	    <!--se creo for each en el video 3-->
-	    @foreach($posts as $post)
+	    @forelse($posts as $post)
 	    <article class="post">
 	        
 			{{-- @if($post->photos->count() === 1)	         --}}
@@ -70,9 +70,13 @@
 	            </footer>
 	        </div>
 	    </article>
-	    @endforeach
-
-
+		@empty
+			<article class="post">
+				<div class="content-post">
+				<h1>No hay publicaciones todavía</h1>							
+				</div>
+			</article>
+	    @endforelse
 	</section>
 	<!-- fin del div.posts.container -->
 {{ $posts->links() }}

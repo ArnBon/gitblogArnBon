@@ -10,26 +10,26 @@
             <div class="authors-categories">
                 <h3 class="text-capitalize">Autores</h3>
                 <ul class="list-unstyled">
-                    {{-- @foreach ($authors as $author)
+                    @foreach ($authors as $author)
                     <li>{{ $author->name }}</li>
-                    @endforeach --}}
+                    @endforeach
                 </ul>
                 <h3 class="text-capitalize">categorias</h3>
                 <ul class="list-unstyled">
-                    {{-- @foreach ($categories as $category)
+                    @foreach ($categories as $category)
                     <li class="text-capitalize">
                         <a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a>
                     </li>
-                    @endforeach --}}
+                    @endforeach
 
                 </ul>
             </div>
             <div class="latest-posts">
                 <h3 class="text-capitalize">Últimos posts</h3>
 
-                {{-- @foreach ($posts as $post)
+                @foreach ($posts as $post)
                 <p><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></p>
-                @endforeach --}}
+                @endforeach
 
                 <h3 class="text-capitalize">posts por mes</h3>
                 <ul class="list-unstyled">
