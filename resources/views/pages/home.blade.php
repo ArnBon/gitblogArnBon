@@ -79,7 +79,7 @@
 	    @endforelse
 	</section>
 	<!-- fin del div.posts.container -->
-{{ $posts->links() }}
+{{ $posts->appends(request()->all())->links() }}
 	{{-- <div class="pagination">
 	    <ul class="list-unstyled container-flex space-center">
 	        <li><a href="#" class="pagination-active">1</a></li>

@@ -10,6 +10,8 @@ class Post extends Model
 {
     protected $dates = ['published_at']; /*se coloco en el video 4 por defecto laravel trata los campos fechas como instancia de carbon*/
 
+   // protected $with = ['category', 'tags', 'owner', 'photos'];
+
     protected static function boot()
     {
         parent::boot();
@@ -55,7 +57,8 @@ class Post extends Model
 
     public function scopePublished($query)
     {
-        $query->whereNotNull('published_at')
+        $query->with(['category', 'tags', 'owner', 'photos'])
+        ->whereNotNull('published_at')
         ->where('published_at','<=',Carbon::now())
         ->latest('published_at');
     }
@@ -68,10 +71,21 @@ class Post extends Model
         return $query;
        } 
         return $query->where('user_id', auth()->id());
-
-
        
     }
+
+    public function scopeByYearAndMonth($query)
+    {
+        return $query->selectRaw('year(published_at) year')
+        ->selectRaw('month(published_at) month')
+        ->selectRaw('monthname(published_at) monthname')
+        ->selectRaw('count(*) posts')
+        ->groupBy('year', 'month', 'monthname')
+        //->orderBy('published_at')
+        ->get();
+    }
+
+
 
     public function isPublished()
     {

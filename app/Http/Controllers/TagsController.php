@@ -11,7 +11,7 @@ class TagsController extends Controller
     {
         return view('/pages.home', [
             'title' => "Publicaciones de las etiquetas '{$tag->name}'",
-            'posts' => $tag->posts()->paginate()
+            'posts' => $tag->posts()->published()->paginate()
         ]);
         /**de este modo estamos enviando una variable posts a la vista welcome pero solamente con los posts que pertenecen
          * a esta categoria a diferencia del home que estamos pasando todos los posts
