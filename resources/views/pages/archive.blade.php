@@ -33,9 +33,9 @@
 
                 <h3 class="text-capitalize">posts por mes</h3>
                 <ul class="list-unstyled">
-                    {{-- @foreach ($archive as $date)
+                    @foreach ($archive as $date)
                     <li>{{ $date->month }} {{ $date->year }} ({{ $date->posts }})</li>
-                    @endforeach --}}
+                    @endforeach
                 </ul>
             </div>
         </div>
